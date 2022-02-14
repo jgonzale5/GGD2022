@@ -44,6 +44,7 @@ public class ChasingScript : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        target = GameObject.FindGameObjectWithTag("Player").transform;
     }
     
     void Update()
