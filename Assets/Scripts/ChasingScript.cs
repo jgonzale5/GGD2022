@@ -39,6 +39,9 @@ public class ChasingScript : MonoBehaviour
     //
     public float minCombatDistance = 1;
 
+    [Header("Spawn")]
+    public Transform particle;
+
 
     void Start()
     {
