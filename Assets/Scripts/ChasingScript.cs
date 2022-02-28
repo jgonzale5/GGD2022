@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-public class ChasingScript : MonoBehaviour
+public class ChasingScript : EntityClass
 {
 
     //This is the component that controls the enemy's movement
@@ -103,6 +103,12 @@ public class ChasingScript : MonoBehaviour
 
     void Patrolling()
     {
+        if (target == null)
+        {
+            currentState = State.Idle;
+            return;
+        }
+
         if (Vector3.Distance(target.position, this.transform.position) 
             <= minCombatDistance)
         {
@@ -130,6 +136,12 @@ public class ChasingScript : MonoBehaviour
 
     void Searching()
     {
+        if (target == null)
+        {
+            currentState = State.Idle;
+            return;
+        }
+
         if (Vector3.Distance(target.position, this.transform.position) <= minCombatDistance)
         {
             currentState = State.Attacking;

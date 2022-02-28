@@ -229,6 +229,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6f09267c8dacd47be70995b0847e85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HP: 1
+  gitsEffect: {fileID: 8299823363210284124, guid: 3d8b3b8d55fcc584f906a8c6358836f9, type: 3}
   idleTime: 2
   minDestinationDistance: 1
   patrolRange: 10
