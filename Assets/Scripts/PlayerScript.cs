@@ -61,7 +61,6 @@ public class PlayerScript : EntityClass
 
     private void OnCollisionEnter(Collision collision)
     {
-        print(collision.gameObject.name);
         if (collision.gameObject.CompareTag(Tag))
         {
             Vector3 touchDirection = this.transform.position - collision.transform.position;
