@@ -8,6 +8,7 @@ public class EntityClass : MonoBehaviour
     public Transform gitsEffect;
     //The internal variable used to keep the value of speed
     protected float _speed;
+    [HideInInspector]
     //This is the property that modifies the value of _speed
     public virtual float speed
     {

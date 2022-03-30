@@ -17,6 +17,7 @@ public class PlayerScript : EntityClass
 
     [Header("Navigation")]
     public NavMeshAgent agent;
+    public LayerMask mask;
 
     //The internal variable used to keep track of the speed without creating infinite loops.
     public new float _speed;
@@ -68,7 +69,7 @@ public class PlayerScript : EntityClass
         //agent.SetDestination tells the player to move to that location.
         Ray ray = Camera.main.ScreenPointToRay(mousePos);
 
-        if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity))
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, mask))
         {
             Vector3 worldPos = hitInfo.point;
             agent.SetDestination(worldPos);
