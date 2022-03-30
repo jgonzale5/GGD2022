@@ -6,7 +6,10 @@ using UnityEngine.AI;
 
 public class PlayerScript : EntityClass
 {
+
     public string Tag;
+
+
     public Rigidbody reggiebody;
     public float knockbackForce;
     public float screenShakeIntensity;
@@ -15,9 +18,34 @@ public class PlayerScript : EntityClass
     [Header("Navigation")]
     public NavMeshAgent agent;
 
+    //The internal variable used to keep track of the speed without creating infinite loops.
+    public new float _speed;
+    //The property that overrides the variable speed in the entity class and defines how _speed is set and get
+    public override float speed
+    {
+        //What happens when the value of speed is changed
+        set
+        {
+            Debug.Log("Speed changed to " + value);
+            _speed = value; //The value of the internal variable _speed is set to the new value
+            agent.speed = _speed; //The speed of the agent is set to the current value of _speed
+        }
+
+        //Whe happens when the value of speed is retrieved
+        get
+        {
+            return _speed; //We simply return the value of _speed. This is the default behavior.
+        }
+    }
+
     [Header("Death Sound")]
     public AudioSource audioSource;
     public AudioClip audioClip;
+
+    private void Start()
+    {
+        agent.speed = speed;
+    }
 
     private void FixedUpdate()
     {

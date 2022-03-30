@@ -6,6 +6,21 @@ public class EntityClass : MonoBehaviour
 {
     public int HP = 1;
     public Transform gitsEffect;
+    //The internal variable used to keep the value of speed
+    protected float _speed;
+    //This is the property that modifies the value of _speed
+    public virtual float speed
+    {
+        set
+        {
+            _speed = value;
+        }
+
+        get
+        {
+            return _speed;
+        }
+    }
 
     public virtual void Kill()
     {
