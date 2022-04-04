@@ -15,7 +15,7 @@ public class SaveLoadScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Load();
     }
 
     public void Save()
@@ -24,6 +24,15 @@ public class SaveLoadScript : MonoBehaviour
         data.SetPlayerPos(player.position);
 
         SaveFile(SaveLoadScript.data);
+    }
+
+    public void Load()
+    {
+        if (LoadFile(out data))
+        {
+            pitchSlider.value = data.pitchValue;
+            player.position = data.GetPlayerPos();
+        }
     }
 
     public void SaveFile(SaveData data)
@@ -37,5 +46,26 @@ public class SaveLoadScript : MonoBehaviour
 
         //This closes the file so there's no resource conflicts
         file.Close();
+    }
+
+    public bool LoadFile(out SaveData data)
+    {
+        if (! System.IO.File.Exists(Application.persistentDataPath + "/" + fileName))
+        {
+            Debug.Log("Load file was not found.");
+            data = new SaveData();
+            return false;
+        }
+
+        //Open the file
+        FileStream file = new FileStream(Application.persistentDataPath + "/" + fileName, FileMode.Open);
+
+        //
+        BinaryFormatter converter = new BinaryFormatter();
+        data = (SaveData)converter.Deserialize(file);
+
+        file.Close();
+
+        return true;
     }
 }
