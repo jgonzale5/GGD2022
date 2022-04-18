@@ -8,9 +8,18 @@ public class BlendTreeTest : MonoBehaviour
     public Animator animator;
     public float walkSpeed;
     public float runSpeed;
-    
+
+    Vector3 velocity = Vector3.zero;
+    public float gravity = 9.8f;
+
     void Update()
     {
+        // apply gravity 
+        velocity.y -= gravity * Time.deltaTime;
+
+        controller.Move(velocity * Time.deltaTime);
+
+
         float speed = walkSpeed * Time.deltaTime;
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
